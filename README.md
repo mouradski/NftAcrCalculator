@@ -45,7 +45,7 @@ import org.springframework.stereotype.Service;
 import java.util.function.Function;
 
 @Service
-public class NewProjectAcrService extends AcrService<Bazooka> {
+public class NewProjectAcrService extends AcrService<NewProject> {
 
     @Override
     public String getProjectName() {
