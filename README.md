@@ -35,6 +35,7 @@ public class NewProject extends Nft {
 ```
 
 Add a service implementation class java/com/birdsgenesis/service/NewProjectAcrService.java
+
 ```java
 package com.birdsgenesis.service;
 
@@ -45,7 +46,7 @@ import org.springframework.stereotype.Service;
 import java.util.function.Function;
 
 @Service
-public class NewProjectAcrService extends AcrService<NewProject> {
+public class NewProjectAcrService extends AbstractAcrService<Bazooka> {
 
     @Override
     public String getProjectName() {
