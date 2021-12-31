@@ -80,9 +80,9 @@ http://localhost:8080/acr/projects
 
 get Acr 
 ```
-http://localhost:8080/acr?proejct=PROJECT_NAME
-http://localhost:8080/acr?proejct=PROJECT_NAME&ids=1,2,3,4555
-http://localhost:8080/acr?proejct=PROJECT_NAME&ids=1,2,3,4555&limit=1000
+http://localhost:8080/acr?project=PROJECT_NAME
+http://localhost:8080/acr?project=PROJECT_NAME&ids=1,2,3,4555
+http://localhost:8080/acr?project=PROJECT_NAME&ids=1,2,3,4555&limit=1000
 ```
 
 ### Support 
