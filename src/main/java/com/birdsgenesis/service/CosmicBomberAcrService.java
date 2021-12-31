@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.function.Function;
 
 @Service
-public class CoscmicBomberAcrService extends AbstractAcrService<Bomber> {
+public class CosmicBomberAcrService extends AbstractAcrService<Bomber> {
 
     @Override
     protected Class<Bomber> getNftType() {
