@@ -24,8 +24,8 @@ public class AcrServicesTest {
     @Test
     public void testListProjects() {
         Set<String> projects = acrService.listProjects();
-        Assertions.assertEquals(4, projects.size());
-        Assertions.assertEquals(Arrays.asList("BazookaChicks", "BirdsGenesis", "PrettyPandas", "SongbirdPunks").stream().collect(Collectors.toSet()), projects);
+        Assertions.assertEquals(5, projects.size());
+        Assertions.assertEquals(Arrays.asList("BazookaChicks", "BirdsGenesis", "PrettyPandas", "SongbirdPunks", "MrSGBWhales").stream().collect(Collectors.toSet()), projects);
     }
 
     @Test
