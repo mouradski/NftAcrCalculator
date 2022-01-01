@@ -21,7 +21,7 @@ public class BirdsAcrService extends AbstractAcrService<Bird> {
 
     @Override
     protected String getMetaUrl() {
-        return "https://sparkles.mypinata.cloud/ipfs/QmXe2RLWnagcD62nSxr45CwA9vPKVNoALwazY9UbiVNF6g/_metadata.json";
+        return "https://ipfs.io/ipfs/QmXe2RLWnagcD62nSxr45CwA9vPKVNoALwazY9UbiVNF6g/_metadata.json";
     }
 
     @Override
