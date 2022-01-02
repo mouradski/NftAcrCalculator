@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.function.Function;
 
 @Service
-public class PrettyPandaAbstractAcrService extends AbstractAcrService<Panda> {
+public class PrettyPandaAcrService extends AbstractAcrService<Panda> {
 
     @Override
     public String getProjectName() {
@@ -28,4 +28,5 @@ public class PrettyPandaAbstractAcrService extends AbstractAcrService<Panda> {
     protected Function<Object, Double> acrFunction() {
         return NftHelper.statisticalRarityScore();
     }
+
 }

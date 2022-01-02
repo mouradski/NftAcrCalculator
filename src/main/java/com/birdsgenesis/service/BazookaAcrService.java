@@ -1,27 +1,27 @@
 package com.birdsgenesis.service;
 
-import com.birdsgenesis.dto.nft.Punk;
+import com.birdsgenesis.dto.nft.Bazooka;
 import com.birdsgenesis.utils.NftHelper;
 import org.springframework.stereotype.Service;
 
 import java.util.function.Function;
 
 @Service
-public class PunkAcrtaServiceAbstract extends AbstractAcrService<Punk> {
+public class BazookaAcrService extends AbstractAcrService<Bazooka> {
 
     @Override
     public String getProjectName() {
-        return "SongbirdPunks";
+        return "BazookaChicks";
     }
 
     @Override
-    protected Class<Punk> getNftType() {
-        return Punk.class;
+    protected Class<Bazooka> getNftType() {
+        return Bazooka.class;
     }
 
     @Override
     protected String getMetaUrl() {
-        return "https://ipfs.io/ipfs/QmVEABGSJp2YSXYdULyJuiJLLbeSrexf2iY3zmZrecc5u8/_metadata.json";
+        return "https://ipfs.io/ipfs/QmNSQh2m4aozJESozZnCj37szuiRvyab57Nkqd25HeGMHY/_metadata.json";
     }
 
     @Override
