@@ -1,9 +1,6 @@
 package com.birdsgenesis.service;
 
-import com.birdsgenesis.dto.nft.Bazooka;
-import com.birdsgenesis.dto.nft.Bird;
-import com.birdsgenesis.dto.nft.Panda;
-import com.birdsgenesis.dto.nft.Punk;
+import com.birdsgenesis.dto.nft.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +21,8 @@ public class AcrServicesTest {
     @Test
     public void testListProjects() {
         Set<String> projects = acrService.listProjects();
-        Assertions.assertEquals(4, projects.size());
-        Assertions.assertEquals(Arrays.asList("BazookaChicks", "BirdsGenesis", "PrettyPandas", "SongbirdPunks").stream().collect(Collectors.toSet()), projects);
+        Assertions.assertEquals(5, projects.size());
+        Assertions.assertEquals(Arrays.asList("BazookaChicks", "BirdsGenesis", "PrettyPandas", "SongbirdPunks", "CosmicBombers").stream().collect(Collectors.toSet()), projects);
     }
 
     @Test
@@ -53,5 +50,10 @@ public class AcrServicesTest {
         Assertions.assertEquals(1, songbirdPunks.get(0).getAcr());
         Assertions.assertEquals(1762, songbirdPunks.stream().filter(nft -> nft.getId().equals(5000)).findFirst().get().getAcr());
         Assertions.assertEquals(20000, songbirdPunks.get(19999).getAcr());
+
+        List<Bomber> bombers = acrService.getNfts("CosmicBombers", new ArrayList<>(), 90000);
+        Assertions.assertEquals(1000, bombers.size());
+        Assertions.assertEquals(1, bombers.get(0).getAcr());
+        Assertions.assertEquals(1000, bombers.get(999).getAcr());
     }
 }

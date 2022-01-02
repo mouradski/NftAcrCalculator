@@ -2,8 +2,11 @@ package com.birdsgenesis.service;
 
 import com.birdsgenesis.dto.nft.Bomber;
 import com.birdsgenesis.utils.NftHelper;
+import com.birdsgenesis.utils.Range;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.function.Function;
 
 @Service
@@ -20,12 +23,17 @@ public class CosmicBomberAcrService extends AbstractAcrService<Bomber> {
     }
 
     @Override
-    protected Function<Object, Double> acrFunction() throws IllegalAccessException {
+    protected Function<Object, Double> acrFunction() {
         return NftHelper.statisticalRarityScore();
     }
 
     @Override
     public String getProjectName() {
         return "CosmicBombers";
+    }
+
+    @Override
+    public List<Range> getBurntEditions() {
+        return Arrays.asList(new Range(1001, 10000));
     }
 }
