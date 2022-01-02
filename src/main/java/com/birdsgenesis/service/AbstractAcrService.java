@@ -29,7 +29,7 @@ public abstract class AbstractAcrService<T extends Nft> {
 
     public abstract String getProjectName();
 
-    protected List<Range> getBurnedEditions() {
+    protected List<Range> getBurntEditions() {
         return null;
     }
 
@@ -44,7 +44,7 @@ public abstract class AbstractAcrService<T extends Nft> {
 
         for (Metadata metadata : response.getBody()) {
             T nft = getNftType().getConstructor(Metadata.class).newInstance(metadata);
-            if (!isBurned(nft.getId())) {
+            if (!isBurnt(nft.getId())) {
                 this.nfts.add(nft);
             }
         }
@@ -135,12 +135,12 @@ public abstract class AbstractAcrService<T extends Nft> {
         return values;
     }
 
-    private boolean isBurned(Integer id) {
-        if (getBurnedEditions() == null) {
+    private boolean isBurnt(Integer id) {
+        if (getBurntEditions() == null) {
             return false;
         }
 
-        for (Range range : getBurnedEditions()) {
+        for (Range range : getBurntEditions()) {
             if (range.contains(id)) {
                 return true;
             }
