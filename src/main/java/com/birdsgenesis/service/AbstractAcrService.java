@@ -29,7 +29,7 @@ public abstract class AbstractAcrService<T extends Nft> {
 
     public abstract String getProjectName();
 
-    protected Set<Range> getBurnedEditions() {
+    protected List<Range> getBurnedEditions() {
         return null;
     }
 
