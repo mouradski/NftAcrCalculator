@@ -4,6 +4,7 @@ import com.birdsgenesis.dto.meta.Metadata;
 import com.birdsgenesis.dto.meta.NftAttribute;
 import com.birdsgenesis.dto.nft.Nft;
 import com.birdsgenesis.utils.NftHelper;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.map.MultiKeyMap;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
@@ -14,6 +15,7 @@ import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+@Slf4j
 public abstract class AbstractAcrService<T extends Nft> {
 
     private List<T> nfts = new ArrayList<>();
@@ -22,7 +24,7 @@ public abstract class AbstractAcrService<T extends Nft> {
 
     protected abstract String getMetaUrl();
 
-    protected abstract Function<Object, Double> acrFunction() throws IllegalAccessException;
+    protected abstract Function<Object, Double> acrFunction();
 
     public abstract String getProjectName();
 
@@ -75,7 +77,7 @@ public abstract class AbstractAcrService<T extends Nft> {
 
                         counts.put(field.getName(), value.toString(), counts.get(field.getName(), value.toString()) + 1);
                     } catch (Exception e) {
-                        e.printStackTrace();
+                        log.warn("Unable to calculate stats for field {} on edition {}:{}", field.getName(), this.getProjectName(), nft.getId());
                     }
                 })
         );

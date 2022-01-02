@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.function.Function;
 
 @Service
-public class PunkAcrServiceAbstract extends AbstractAcrService<Punk> {
+public class SongbirdPunksAcrService extends AbstractAcrService<Punk> {
 
     @Override
     public String getProjectName() {
