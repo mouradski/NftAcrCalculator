@@ -40,8 +40,7 @@ public abstract class AbstractAcrService<T extends Nft> {
         ResponseEntity<Metadata[]> response = new RestTemplate()
                 .exchange(getMetaUrl(),
                         HttpMethod.GET, entity, Metadata[].class);
-
-
+        
         for (Metadata metadata : response.getBody()) {
             T nft = getNftType().getConstructor(Metadata.class).newInstance(metadata);
             if (!isBurnt(nft.getId())) {
