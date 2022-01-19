@@ -4,6 +4,8 @@ import com.birdsgenesis.dto.meta.Metadata;
 import com.birdsgenesis.dto.meta.NftAttribute;
 import com.birdsgenesis.dto.nft.Nft;
 import com.birdsgenesis.utils.NftHelper;
+import com.birdsgenesis.utils.Range;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.map.MultiKeyMap;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
@@ -14,6 +16,7 @@ import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+@Slf4j
 public abstract class AbstractAcrService<T extends Nft> {
 
     private List<T> nfts = new ArrayList<>();
@@ -22,9 +25,13 @@ public abstract class AbstractAcrService<T extends Nft> {
 
     protected abstract String getMetaUrl();
 
-    protected abstract Function<Object, Double> acrFunction() throws IllegalAccessException;
+    protected abstract Function<Object, Double> acrFunction();
 
     public abstract String getProjectName();
+
+    protected List<Range> getBurntEditions() {
+        return null;
+    }
 
     @PostConstruct
     public void init() throws Exception {
@@ -33,11 +40,12 @@ public abstract class AbstractAcrService<T extends Nft> {
         ResponseEntity<Metadata[]> response = new RestTemplate()
                 .exchange(getMetaUrl(),
                         HttpMethod.GET, entity, Metadata[].class);
-
-
+        
         for (Metadata metadata : response.getBody()) {
             T nft = getNftType().getConstructor(Metadata.class).newInstance(metadata);
-            this.nfts.add(nft);
+            if (!isBurnt(nft.getId())) {
+                this.nfts.add(nft);
+            }
         }
 
         updateStats();
@@ -75,7 +83,7 @@ public abstract class AbstractAcrService<T extends Nft> {
 
                         counts.put(field.getName(), value.toString(), counts.get(field.getName(), value.toString()) + 1);
                     } catch (Exception e) {
-                        e.printStackTrace();
+                        log.warn("Unable to calculate stats for field {} on edition {}:{}", field.getName(), this.getProjectName(), nft.getId());
                     }
                 })
         );
@@ -124,6 +132,20 @@ public abstract class AbstractAcrService<T extends Nft> {
         }
 
         return values;
+    }
+
+    private boolean isBurnt(Integer id) {
+        if (getBurntEditions() == null) {
+            return false;
+        }
+
+        for (Range range : getBurntEditions()) {
+            if (range.contains(id)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private HttpEntity getEntity() {

@@ -28,4 +28,5 @@ public class BirdsAcrService extends AbstractAcrService<Bird> {
     protected Function<Object, Double> acrFunction() {
         return NftHelper.statisticalRarityScore();
     }
+
 }

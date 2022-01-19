@@ -28,4 +28,5 @@ public class PrettyPandaAcrService extends AbstractAcrService<Panda> {
     protected Function<Object, Double> acrFunction() {
         return NftHelper.statisticalRarityScore();
     }
+
 }
