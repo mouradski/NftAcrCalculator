@@ -28,7 +28,7 @@ public class AcrService {
     }
 
     public Set<String> listAttributeValues(String project, String attributeName) throws IllegalAccessException {
-        return getAcrService(project).getList(attributeName);
+        return getAcrService(project).getAttributeValues(attributeName);
     }
 
     private AbstractAcrService getAcrService(String project) {

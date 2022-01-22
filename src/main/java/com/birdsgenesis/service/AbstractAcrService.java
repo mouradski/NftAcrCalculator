@@ -115,9 +115,9 @@ public abstract class AbstractAcrService<T extends Nft> {
         return stats;
     }
 
-    public Set<String> getList(String type) throws IllegalAccessException {
+    public Set<String> getAttributeValues(String attributeName) throws IllegalAccessException {
         Field field = Arrays.stream(getNftType().getDeclaredFields())
-                .filter(f -> f.getName().equalsIgnoreCase(type)).findAny().orElse(null);
+                .filter(f -> f.getName().equalsIgnoreCase(attributeName)).findAny().orElse(null);
 
         if (field == null) {
             return new HashSet<>();
